@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Livro {
+public class Livro implements Entidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

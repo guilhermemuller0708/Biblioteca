@@ -5,9 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Emprestimo {
+public class Emprestimo implements Entidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +16,9 @@ public class Emprestimo {
     private Calendar retirada;
     private Calendar previsaoDevolucao;
     private Calendar devolucao;
+
+    @OneToMany
+    private Usuario usuario;
 
     public int getId() {
         return id;
@@ -46,6 +50,14 @@ public class Emprestimo {
 
     public void setDevolucao(Calendar devolucao) {
         this.devolucao = devolucao;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
 }
