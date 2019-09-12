@@ -1,11 +1,14 @@
 package br.edu.restinga.ifrs.gui.biblioteca.biblioteca.modelo.entidade;
 
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Emprestimo implements Entidade {
@@ -13,12 +16,18 @@ public class Emprestimo implements Entidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Temporal(TemporalType.DATE)
     private Calendar retirada;
+
+    @Temporal(TemporalType.DATE)
     private Calendar previsaoDevolucao;
+
+    @Temporal(TemporalType.DATE)
     private Calendar devolucao;
 
     @OneToMany
-    private Usuario usuario;
+    private List<Usuario> usuario;
 
     public int getId() {
         return id;
@@ -52,11 +61,11 @@ public class Emprestimo implements Entidade {
         this.devolucao = devolucao;
     }
 
-    public Usuario getUsuario() {
+    public List<Usuario> getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(List<Usuario> usuario) {
         this.usuario = usuario;
     }
 

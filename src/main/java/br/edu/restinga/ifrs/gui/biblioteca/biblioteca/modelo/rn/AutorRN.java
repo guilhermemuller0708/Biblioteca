@@ -1,7 +1,9 @@
 package br.edu.restinga.ifrs.gui.biblioteca.biblioteca.modelo.rn;
 
 import br.edu.restinga.ifrs.gui.biblioteca.biblioteca.modelo.entidade.Autor;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AutorRN implements RegraNegocio<Autor> {
 
     @Override

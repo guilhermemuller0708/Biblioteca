@@ -6,7 +6,9 @@ import br.edu.restinga.ifrs.gui.biblioteca.biblioteca.modelo.rn.BibliotecarioRN;
 import br.edu.restinga.ifrs.gui.biblioteca.biblioteca.modelo.rn.RegraNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BibliotecarioService extends Servico<Bibliotecario> {
 
     @Autowired
