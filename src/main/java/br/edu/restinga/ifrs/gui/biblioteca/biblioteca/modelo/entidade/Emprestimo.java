@@ -1,12 +1,11 @@
 package br.edu.restinga.ifrs.gui.biblioteca.biblioteca.modelo.entidade;
 
 import java.util.Calendar;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,13 +25,21 @@ public class Emprestimo implements Entidade {
     @Temporal(TemporalType.DATE)
     private Calendar devolucao;
 
-    @OneToMany
-    private List<Usuario> usuario;
+    @ManyToOne
+    private Usuario usuario;
 
+    @ManyToOne
+    private Bibliotecario bibliotecario;
+
+    @ManyToOne
+    Livro livro;
+
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -61,12 +68,28 @@ public class Emprestimo implements Entidade {
         this.devolucao = devolucao;
     }
 
-    public List<Usuario> getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(List<Usuario> usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Bibliotecario getBibliotecario() {
+        return bibliotecario;
+    }
+
+    public void setBibliotecario(Bibliotecario bibliotecario) {
+        this.bibliotecario = bibliotecario;
+    }
+
+    public Livro getLivro() {
+        return livro;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
     }
 
 }

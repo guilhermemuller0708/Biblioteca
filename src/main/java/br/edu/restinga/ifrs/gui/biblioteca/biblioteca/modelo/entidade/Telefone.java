@@ -16,10 +16,12 @@ public class Telefone implements Entidade {
     private int area;
     private int ramal;
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }

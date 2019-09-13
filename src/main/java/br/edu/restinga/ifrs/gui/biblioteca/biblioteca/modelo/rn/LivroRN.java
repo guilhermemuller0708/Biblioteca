@@ -1,5 +1,6 @@
 package br.edu.restinga.ifrs.gui.biblioteca.biblioteca.modelo.rn;
 
+import br.edu.restinga.ifrs.gui.biblioteca.biblioteca.excecoes.QuebraRegraNegocio;
 import br.edu.restinga.ifrs.gui.biblioteca.biblioteca.modelo.entidade.Livro;
 import org.springframework.stereotype.Component;
 
@@ -8,8 +9,10 @@ public class LivroRN implements RegraNegocio<Livro> {
 
     @Override
     public void validarCadastrar(Livro entidade) {
-        if (true) {
-
+        if (entidade.getTitulo() == null
+                || entidade.getTitulo().equals("")
+                || entidade.getAnoPublicacao() == 0) {
+            throw new QuebraRegraNegocio("Todos os campos são obrigatórios");
         }
     }
 

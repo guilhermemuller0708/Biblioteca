@@ -14,10 +14,12 @@ public class Autor implements Entidade {
     private String primeiroNome;
     private String segundoNome;
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }

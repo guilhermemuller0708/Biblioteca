@@ -1,9 +1,11 @@
 package br.edu.restinga.ifrs.gui.biblioteca.biblioteca.modelo.entidade;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Livro implements Entidade {
@@ -15,10 +17,18 @@ public class Livro implements Entidade {
     private int anoPublicacao;
     private boolean doacao;
 
+    @ManyToMany
+    private List<Editora> editoras;
+
+    @ManyToMany
+    private List<Autor> autores;
+
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -45,6 +55,22 @@ public class Livro implements Entidade {
 
     public void setDoacao(boolean doacao) {
         this.doacao = doacao;
+    }
+
+    public List<Editora> getEditoras() {
+        return editoras;
+    }
+
+    public void setEditoras(List<Editora> editoras) {
+        this.editoras = editoras;
+    }
+
+    public List<Autor> getAutores() {
+        return autores;
+    }
+
+    public void setAutores(List<Autor> autores) {
+        this.autores = autores;
     }
 
 }

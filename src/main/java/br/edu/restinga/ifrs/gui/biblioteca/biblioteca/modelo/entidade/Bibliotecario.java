@@ -15,10 +15,12 @@ public class Bibliotecario implements Entidade {
     private String email;
     private String senha;
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }

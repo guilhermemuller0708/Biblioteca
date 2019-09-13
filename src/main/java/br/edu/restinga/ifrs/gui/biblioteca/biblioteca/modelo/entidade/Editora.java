@@ -14,10 +14,12 @@ public class Editora implements Entidade {
     private String nome;
     private String cnpj;
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }

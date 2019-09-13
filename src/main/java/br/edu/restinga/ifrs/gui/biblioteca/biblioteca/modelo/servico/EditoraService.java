@@ -26,4 +26,5 @@ public class EditoraService extends Servico<Editora> {
     public RegraNegocio<Editora> getRegraNegocio() {
         return regraNegocio;
     }
+
 }

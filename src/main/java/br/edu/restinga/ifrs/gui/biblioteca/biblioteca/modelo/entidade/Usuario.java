@@ -19,12 +19,14 @@ public class Usuario implements Entidade {
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Telefone> telefone;
+    private List<Telefone> telefones;
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -53,12 +55,12 @@ public class Usuario implements Entidade {
         this.email = email;
     }
 
-    public List<Telefone> getTelefone() {
-        return telefone;
+    public List<Telefone> getTelefones() {
+        return telefones;
     }
 
-    public void setTelefone(List<Telefone> telefone) {
-        this.telefone = telefone;
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
     }
 
 }
