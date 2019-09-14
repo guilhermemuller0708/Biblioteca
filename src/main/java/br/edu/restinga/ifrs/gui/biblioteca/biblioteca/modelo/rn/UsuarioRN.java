@@ -14,6 +14,19 @@ public class UsuarioRN implements RegraNegocio<Usuario> {
 
     @Override
     public void validarCadastrar(Usuario entidade) {
+        this.valida(entidade);
+    }
+
+    @Override
+    public void validarAtualizar(Usuario entidadeAtinga, Usuario entidadeNova) {
+        this.valida(entidadeNova);
+    }
+
+    @Override
+    public void validarExcluir(Usuario entidade) {
+    }
+
+    private void valida(Usuario entidade) {
         if (entidade.getEmail() == null
                 || entidade.getNome() == null
                 || entidade.getCpf() == null
@@ -25,9 +38,11 @@ public class UsuarioRN implements RegraNegocio<Usuario> {
 
         Iterable<Usuario> findAll = usuarioDAO.findAll();
         for (Usuario usuarioBanco : findAll) {
-            if (entidade.getEmail().equals(usuarioBanco.getEmail())
-                    || entidade.getCpf().equals(usuarioBanco.getCpf())) {
-                throw new QuebraRegraNegocio("E-mail e cpf não podem ser repetidos");
+            if (entidade.getId() != usuarioBanco.getId()) {
+                if (entidade.getEmail().equals(usuarioBanco.getEmail())
+                        || entidade.getCpf().equals(usuarioBanco.getCpf())) {
+                    throw new QuebraRegraNegocio("E-mail e cpf não podem ser repetidos");
+                }
             }
         }
 
@@ -35,19 +50,4 @@ public class UsuarioRN implements RegraNegocio<Usuario> {
             throw new QuebraRegraNegocio("O usuário não pode ter mais de 3 telefones");
         }
     }
-
-    @Override
-    public void validarAtualizar(Usuario entidadeAtinga, Usuario entidadeNova) {
-        if (true) {
-
-        }
-    }
-
-    @Override
-    public void validarExcluir(Usuario entidade) {
-        if (true) {
-
-        }
-    }
-
 }

@@ -14,6 +14,20 @@ public class EditoraRN implements RegraNegocio<Editora> {
 
     @Override
     public void validarCadastrar(Editora entidade) {
+        this.valida(entidade);
+    }
+
+    @Override
+    public void validarAtualizar(Editora entidadeAtinga, Editora entidadeNova) {
+        this.valida(entidadeNova);
+    }
+
+    @Override
+    public void validarExcluir(Editora entidade) {
+
+    }
+
+    private void valida(Editora entidade) {
         if (entidade.getNome() == null
                 || entidade.getNome().equals("")) {
             throw new QuebraRegraNegocio("Todos os campos são obrigatórios");
@@ -21,23 +35,11 @@ public class EditoraRN implements RegraNegocio<Editora> {
 
         Iterable<Editora> findAll = editoraDAO.findAll();
         for (Editora editoraBanco : findAll) {
-            if (entidade.getCnpj().equals(editoraBanco.getCnpj())) {
-                throw new QuebraRegraNegocio("Cnpj não pode ser repetido");
+            if (entidade.getId() != editoraBanco.getId()) {
+                if (entidade.getCnpj().equals(editoraBanco.getCnpj())) {
+                    throw new QuebraRegraNegocio("Cnpj não pode ser repetido");
+                }
             }
-        }
-    }
-
-    @Override
-    public void validarAtualizar(Editora entidadeAtinga, Editora entidadeNova) {
-        if (true) {
-
-        }
-    }
-
-    @Override
-    public void validarExcluir(Editora entidade) {
-        if (true) {
-
         }
     }
 

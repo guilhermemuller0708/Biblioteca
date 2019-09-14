@@ -14,6 +14,19 @@ public class AutorRN implements RegraNegocio<Autor> {
 
     @Override
     public void validarCadastrar(Autor entidade) {
+        this.valida(entidade);
+    }
+
+    @Override
+    public void validarAtualizar(Autor entidadeAtinga, Autor entidadeNova) {
+        this.valida(entidadeNova);
+    }
+
+    @Override
+    public void validarExcluir(Autor entidade) {
+    }
+
+    private void valida(Autor entidade) {
         if (entidade.getPrimeiroNome() == null
                 || entidade.getSegundoNome() == null
                 || entidade.getPrimeiroNome().equals("")
@@ -23,25 +36,13 @@ public class AutorRN implements RegraNegocio<Autor> {
 
         Iterable<Autor> findAll = autorDAO.findAll();
         for (Autor autorbanco : findAll) {
-            if (entidade.getPrimeiroNome().equals(autorbanco.getPrimeiroNome())
-                    || entidade.getSegundoNome().equals(autorbanco.getSegundoNome())) {
-                throw new QuebraRegraNegocio("Não podem ser cadastrados dois "
-                        + "autores com o mesmo 'primeiroNome' e 'segundoNome'");
+            if (entidade.getId() != autorbanco.getId()) {
+                if (entidade.getPrimeiroNome().equals(autorbanco.getPrimeiroNome())
+                        && entidade.getSegundoNome().equals(autorbanco.getSegundoNome())) {
+                    throw new QuebraRegraNegocio("Não podem ser cadastrados dois "
+                            + "autores com o mesmo 'primeiroNome' e 'segundoNome'");
+                }
             }
-        }
-    }
-
-    @Override
-    public void validarAtualizar(Autor entidadeAtinga, Autor entidadeNova) {
-        if (true) {
-
-        }
-    }
-
-    @Override
-    public void validarExcluir(Autor entidade) {
-        if (true) {
-
         }
     }
 

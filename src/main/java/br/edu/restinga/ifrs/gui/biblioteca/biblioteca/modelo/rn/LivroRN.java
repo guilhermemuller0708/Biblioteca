@@ -9,24 +9,24 @@ public class LivroRN implements RegraNegocio<Livro> {
 
     @Override
     public void validarCadastrar(Livro entidade) {
-        if (entidade.getTitulo() == null
-                || entidade.getTitulo().equals("")
-                || entidade.getAnoPublicacao() == 0) {
-            throw new QuebraRegraNegocio("Todos os campos são obrigatórios");
-        }
+        this.valida(entidade);
     }
 
     @Override
     public void validarAtualizar(Livro entidadeAtinga, Livro entidadeNova) {
-        if (true) {
-
-        }
+        this.valida(entidadeNova);
     }
 
     @Override
     public void validarExcluir(Livro entidade) {
-        if (true) {
 
+    }
+
+    private void valida(Livro entidade) {
+        if (entidade.getTitulo() == null
+                || entidade.getTitulo().equals("")
+                || entidade.getAnoPublicacao() == 0) {
+            throw new QuebraRegraNegocio("Todos os campos são obrigatórios");
         }
     }
 

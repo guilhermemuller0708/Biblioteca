@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Livro implements Entidade {
 
@@ -18,9 +20,11 @@ public class Livro implements Entidade {
     private boolean doacao;
 
     @ManyToMany
+    @JsonIgnore
     private List<Editora> editoras;
 
     @ManyToMany
+    @JsonIgnore
     private List<Autor> autores;
 
     @Override

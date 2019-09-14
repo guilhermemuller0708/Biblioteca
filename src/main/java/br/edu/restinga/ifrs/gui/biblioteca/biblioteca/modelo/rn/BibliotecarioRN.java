@@ -14,6 +14,20 @@ public class BibliotecarioRN implements RegraNegocio<Bibliotecario> {
 
     @Override
     public void validarCadastrar(Bibliotecario entidade) {
+        this.valida(entidade);
+    }
+
+    @Override
+    public void validarAtualizar(Bibliotecario entidadeAtinga, Bibliotecario entidadeNova) {
+        this.valida(entidadeNova);
+    }
+
+    @Override
+    public void validarExcluir(Bibliotecario entidade) {
+
+    }
+
+    private void valida(Bibliotecario entidade) {
         if (entidade.getEmail() == null
                 || entidade.getNome() == null
                 || entidade.getSenha() == null
@@ -29,24 +43,11 @@ public class BibliotecarioRN implements RegraNegocio<Bibliotecario> {
 
         Iterable<Bibliotecario> findAll = bibliotecarioDAO.findAll();
         for (Bibliotecario bibliotecarioBanco : findAll) {
-            if (entidade.getEmail().equals(bibliotecarioBanco.getEmail())) {
-                throw new QuebraRegraNegocio("E-mail não pode ser repetido");
+            if (entidade.getId() != bibliotecarioBanco.getId()) {
+                if (entidade.getEmail().equals(bibliotecarioBanco.getEmail())) {
+                    throw new QuebraRegraNegocio("E-mail não pode ser repetido");
+                }
             }
         }
     }
-
-    @Override
-    public void validarAtualizar(Bibliotecario entidadeAtinga, Bibliotecario entidadeNova) {
-        if (true) {
-
-        }
-    }
-
-    @Override
-    public void validarExcluir(Bibliotecario entidade) {
-        if (true) {
-
-        }
-    }
-
 }
