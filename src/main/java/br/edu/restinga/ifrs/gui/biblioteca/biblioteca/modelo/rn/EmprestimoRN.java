@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EmprestimoRN implements RegraNegocio<Emprestimo> {
-
+    
     @Autowired
     EmprestimoDAO emprestimoDAO;
-
+    
     @Override
     public void validarCadastrar(Emprestimo entidade) {
 //        add retirada
@@ -23,22 +23,20 @@ public class EmprestimoRN implements RegraNegocio<Emprestimo> {
         Calendar c = Calendar.getInstance();
         c.add(Calendar.DATE, +7);
         entidade.setPrevisaoDevolucao(c);
-
+        
         this.valida(entidade);
-        if (entidade.getDevolucao() != null) {
-            this.livroEmprestado(entidade.getLivro());
-        }
+        this.livroEmprestado(entidade.getLivro());
     }
-
+    
     @Override
     public void validarAtualizar(Emprestimo entidadeAtinga, Emprestimo entidadeNova) {
-
+        this.valida(entidadeNova);
     }
-
+    
     @Override
     public void validarExcluir(Emprestimo entidade) {
     }
-
+    
     private void valida(Emprestimo entidade) {
         if (entidade.getBibliotecario() == null
                 || entidade.getBibliotecario().equals("")
@@ -56,7 +54,7 @@ public class EmprestimoRN implements RegraNegocio<Emprestimo> {
             }
         }
     }
-
+    
     private void livroEmprestado(Livro livro) {
         Iterable<Emprestimo> findAll = emprestimoDAO.findAll();
         for (Emprestimo emprestimo : findAll) {
